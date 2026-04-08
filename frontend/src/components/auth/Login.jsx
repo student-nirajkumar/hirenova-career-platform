@@ -49,11 +49,20 @@ const Login = () => {
             );
 
             // ✅ Login success
+            // if (res.data.success) {
+            //     dispatch(setUser(res.data.user));
+            //     toast.success(res.data.message);
+            //     navigate("/");
+            // }
             if (res.data.success) {
-                dispatch(setUser(res.data.user));
-                toast.success(res.data.message);
-                navigate("/");
-            }
+    dispatch(setUser(res.data.user));
+
+    // ✅ ADD THIS LINE (VERY IMPORTANT)
+    localStorage.setItem("token", res.data.token);
+
+    toast.success(res.data.message);
+    navigate("/");
+}
 
         } catch (error) {
             const message = error.response?.data?.message || "Login failed";
