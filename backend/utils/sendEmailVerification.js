@@ -10,7 +10,7 @@ export const sendEmailVerification = async (email, token) => {
             }
         });
 
-      const verifyLink = `https://hirenova-career-platform.onrender.com/api/v1/user/verify-email/${token}`;
+      const verifyLink = `https://hirenova-career-platform-1.onrender.com/api/v1/user/verify-email/${token}`;
 
         await transporter.sendMail({
             from: process.env.EMAIL,

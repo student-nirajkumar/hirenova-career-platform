@@ -5,7 +5,7 @@ A full-stack **Job Portal web application** built using the **MERN stack (MongoD
 This project connects **job seekers (students)** and **recruiters** on a single platform with secure authentication, role-based access, and real-world backend logic.
 
 🌐 **Live Demo:**  
-https://hirenova-career-platform.onrender.com
+https://hirenova-career-platform-1.onrender.com
 
 ---
 

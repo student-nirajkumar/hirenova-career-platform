@@ -75,7 +75,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "https://hirenova-career-platform.onrender.com",
+    origin: "https://hirenova-career-platform-1.onrender.com",
     credentials: true,
   })
 );
