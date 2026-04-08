@@ -16,7 +16,7 @@ const VerifyEmail = () => {
     const verifyEmail = async () => {
       try {
         const backendBase =
-          import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+          import.meta.env.VITE_API_BASE_URL || "https://hirenova-career-platform.onrender.com";
 
         const res = await axios.get(
           `${backendBase}/api/v1/user/verify-email/${token}`

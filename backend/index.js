@@ -75,7 +75,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "http://localhost:8000",
+    origin: "https://hirenova-career-platform.onrender.com",
     credentials: true,
   })
 );
