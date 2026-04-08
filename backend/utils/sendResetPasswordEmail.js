@@ -10,7 +10,7 @@ export const sendResetPasswordEmail = async (email, token) => {
             }
         });
 
-        const resetLink = `https://job-potal-for-fresher.onrender.com/reset-password/${token}`;
+        const resetLink = `http://localhost:8000/api/v1/user/reset-password/${token}`;
 
         await transporter.sendMail({
             from: process.env.EMAIL,
@@ -24,7 +24,9 @@ export const sendResetPasswordEmail = async (email, token) => {
             `
         });
 
+        console.log("✅ Reset email sent");
+
     } catch (error) {
-        console.log("Error sending reset password email:", error);
+        console.log("❌ Error sending reset password email:", error);
     }
 };

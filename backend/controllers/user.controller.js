@@ -198,10 +198,23 @@ export const updateProfile = async (req, res) => {
 
         if (req.file) {
             const fileUri = getDataUri(req.file);
+            // const cloudResponse = await cloudinary.uploader.upload(
+            //     fileUri.content
+            // );
+
             const cloudResponse = await cloudinary.uploader.upload(
-                fileUri.content
-            );
-            user.profile.resume = cloudResponse.secure_url;
+    fileUri.content,
+    // {
+    //     resource_type: "raw" // ✅ THIS IS THE FIX
+    // }
+     {
+        resource_type: "image",
+        type: "upload",        // ✅ IMPORTANT
+        access_mode: "public"  // ✅ FORCE PUBLIC
+    }
+);
+           user.profile.resume = cloudResponse.secure_url;
+            
             user.profile.resumeOriginalName = req.file.originalname;
         }
 

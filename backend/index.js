@@ -75,7 +75,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "https://job-potal-for-fresher.onrender.com",
+    origin: "http://localhost:8000",
     credentials: true,
   })
 );

@@ -10,7 +10,7 @@ export const sendEmailVerification = async (email, token) => {
             }
         });
 
-        const verifyLink = `https://job-potal-for-fresher.onrender.com/verify-email/${token}`;
+        const verifyLink = `http://localhost:8000/api/v1/user/verify-email/${token}`;
 
         await transporter.sendMail({
             from: process.env.EMAIL,
@@ -24,7 +24,9 @@ export const sendEmailVerification = async (email, token) => {
             `
         });
 
+        console.log("✅ Email sent");
+
     } catch (error) {
-        console.log("Email verification error:", error);
+        console.log("❌ Email verification error:", error);
     }
 };
