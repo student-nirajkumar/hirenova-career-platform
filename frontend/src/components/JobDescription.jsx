@@ -18,22 +18,45 @@ const JobDescription = () => {
     const jobId = params.id;
     const dispatch = useDispatch();
 
-    const applyJobHandler = async () => {
-        try {
-            const res = await axios.get(`${APPLICATION_API_END_POINT}/apply/${jobId}`, {withCredentials:true});
+   // const applyJobHandler = async () => {
+    //     try {
+    //         const res = await axios.get(`${APPLICATION_API_END_POINT}/apply/${jobId}`, {withCredentials:true});
             
-            if(res.data.success){
-                setIsApplied(true); // Update the local state
-                const updatedSingleJob = {...singleJob, applications:[...singleJob.applications,{applicant:user?._id}]}
-                dispatch(setSingleJob(updatedSingleJob)); // helps us to real time UI update
-                toast.success(res.data.message);
+    //         if(res.data.success){
+    //             setIsApplied(true); // Update the local state
+    //             const updatedSingleJob = {...singleJob, applications:[...singleJob.applications,{applicant:user?._id}]}
+    //             dispatch(setSingleJob(updatedSingleJob)); // helps us to real time UI update
+    //             toast.success(res.data.message);
 
-            }
-        } catch (error) {
-            console.log(error);
-            toast.error(error.response.data.message);
+    //         }
+    //     } catch (error) {
+    //         console.log(error);
+    //         toast.error(error.response.data.message);
+    //     }
+    // }
+
+    const applyJobHandler = async () => {
+    try {
+        const res = await axios.post(
+            `${APPLICATION_API_END_POINT}/apply/${jobId}`,
+            {},
+            { withCredentials: true }
+        );
+        
+        if(res.data.success){
+            setIsApplied(true);
+            const updatedSingleJob = {
+                ...singleJob,
+                applications: [...singleJob.applications, { applicant: user?._id }]
+            };
+            dispatch(setSingleJob(updatedSingleJob));
+            toast.success(res.data.message);
         }
+    } catch (error) {
+        console.log(error);
+        toast.error(error.response?.data?.message || "Something went wrong");
     }
+}
 
     useEffect(()=>{
         const fetchSingleJob = async () => {
@@ -73,7 +96,7 @@ const JobDescription = () => {
                 <h1 className='font-bold my-1'>Role: <span className='pl-4 font-normal text-gray-800'>{singleJob?.title}</span></h1>
                 <h1 className='font-bold my-1'>Location: <span className='pl-4 font-normal text-gray-800'>{singleJob?.location}</span></h1>
                 <h1 className='font-bold my-1'>Description: <span className='pl-4 font-normal text-gray-800'>{singleJob?.description}</span></h1>
-                <h1 className='font-bold my-1'>Experience: <span className='pl-4 font-normal text-gray-800'>{singleJob?.experience} yrs</span></h1>
+                <h1 className='font-bold my-1'>Experience: <span className='pl-4 font-normal text-gray-800'>{singleJob?.experienceLevel} yrs</span></h1>
                 <h1 className='font-bold my-1'>Salary: <span className='pl-4 font-normal text-gray-800'>{singleJob?.salary}LPA</span></h1>
                 <h1 className='font-bold my-1'>Total Applicants: <span className='pl-4 font-normal text-gray-800'>{singleJob?.applications?.length}</span></h1>
                 <h1 className='font-bold my-1'>Posted Date: <span className='pl-4 font-normal text-gray-800'>{singleJob?.createdAt.split("T")[0]}</span></h1>
@@ -83,3 +106,4 @@ const JobDescription = () => {
 }
 
 export default JobDescription
+

@@ -10,7 +10,9 @@ export const sendResetPasswordEmail = async (email, token) => {
             }
         });
 
-        const resetLink = `https://hirenova-career-platform-1.onrender.com/api/v1/user/reset-password/${token}`;
+       // const resetLink = `http://localhost:8000/api/v1/user/reset-password/${token}`;
+
+       const resetLink = `http://localhost:5173/reset-password/${token}`;
 
         await transporter.sendMail({
             from: process.env.EMAIL,
